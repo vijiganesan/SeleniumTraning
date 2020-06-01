@@ -6,10 +6,11 @@
  <parameter name="pswd" value="crmsfa" ></parameter>
   <test thread-count="5" name="Leads" parallel="classes">
     <classes>
-      <class name="testcase.CreateLead"/> 
       <class name="testcase.DuplicateLead"/>
       <class name="testcase.DeleteLead"/>
       <class name="testcase.EditLead"/>
+      <class name="testcase.MergeLead"/>
+      <class name="testcase.CreateLead"/> 
     </classes>
   </test> <!-- Leads -->
 </suite> <!-- testleaf -->
