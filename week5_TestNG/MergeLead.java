@@ -3,13 +3,22 @@ package testcase;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 public class MergeLead extends BaseClass{
 	
-	@Test
-	public void runMergeLead() throws InterruptedException {
+	@BeforeTest
+	public void sendFileName() {
+		
+		workBookName = "MergeLead";
+
+	}
+	
+	@Test(dataProvider="fetchData")
+	public void runMergeLead(String firstLead, String secondLead) throws InterruptedException {
 		
 		//navigate to Find leads 
 		driver.findElementByLinkText("Find Leads").click();	
@@ -28,6 +37,11 @@ public class MergeLead extends BaseClass{
 			driver.switchTo().window(winHandle);
 		}
 		
+		//find by name
+		driver.findElementByXPath("//input[@name='firstName']").sendKeys(firstLead);
+		driver.findElementByXPath("//button[text()='Find Leads']").click();
+		Thread.sleep(1000);
+		
 		//selecting 1st Lead
 		driver.findElementByXPath("//div[@class='x-grid3-cell-inner x-grid3-col-partyId']/a").click();
 		
@@ -42,8 +56,13 @@ public class MergeLead extends BaseClass{
 			driver.switchTo().window(winHandle);
 		}
 		
+		//filter by name
+		driver.findElementByXPath("//input[@name='firstName']").sendKeys(secondLead);
+		driver.findElementByXPath("//button[text()='Find Leads']").click();
+		Thread.sleep(1000);
+		
 		//selecting 2nd contact
-		driver.findElementByXPath("(//div[@class='x-grid3-cell-inner x-grid3-col-partyId']/a)[2]").click();
+		driver.findElementByXPath("//div[@class='x-grid3-cell-inner x-grid3-col-partyId']/a").click();
 		
 		//switch to parent window
 		driver.switchTo().window(handle);
