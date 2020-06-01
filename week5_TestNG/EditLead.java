@@ -59,7 +59,7 @@ public class EditLead extends BaseClass{
 		
 		Thread.sleep(1000);
 		
-		if (compName[0].equals("TestLeaf"))
+		if (compName[0].equals(companyName))
 			System.out.println("The updated Company Name value matches");
 		else
 			System.out.println("The updated Company Name value is NOT matching");
